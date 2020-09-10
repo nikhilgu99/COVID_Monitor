@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    tools:context=".QuestionActivity">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NAME"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textSize="30dp"
+        android:textColor="#ffffff"
+        android:fontFamily="casual"/>
+
+    <TextView
+        android:id="@+id/selectText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose one of the following"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        android:fontFamily="casual"/>
+
+    <Button
+        android:id="@+id/symptom_survey_button"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Symptom Survey"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="250dp"
+        android:textSize="20dp"/>
+
+    <Button
+        android:id="@+id/daily_tracker_button"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Daily Tracker"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="350dp"
+        android:textSize="20dp"/>
+
+    <Button
+    android:id="@+id/admin_dashboard_button"
+    android:layout_width="250dp"
+    android:layout_height="wrap_content"
+    android:text="Admin Dashboard"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="450dp"
+    android:textSize="20dp"/>
+
+    <Button
+        android:id="@+id/covid_info_button"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="COVID Information"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="550dp"
+        android:textSize="20dp"/>
+
+    <Button
+        android:id="@+id/sign_out_button"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Sign Out"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="600dp"
+        android:textSize="20dp"/>
+</RelativeLayout>

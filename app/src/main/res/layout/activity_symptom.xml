@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SymptomActivity">
+
+    <TextView
+        android:id="@+id/questionNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Q 1"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:textSize="30dp"
+        android:textColor="#000000"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/symptom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="question"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:gravity="center_horizontal"
+        android:textSize="25dp"
+        android:textColor="#000000"/>
+
+    <Button
+        android:id="@+id/yes_button"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Yes"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="300dp"
+        android:textSize="20dp"/>
+
+    <Button
+        android:id="@+id/no_button"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="No"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="400dp"
+        android:textSize="20dp"/>
+</RelativeLayout>
