@@ -71,6 +71,6 @@
         android:layout_height="wrap_content"
         android:text="Sign Out"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="600dp"
+        android:layout_marginTop="650dp"
         android:textSize="20dp"/>
 </RelativeLayout>
