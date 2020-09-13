@@ -77,7 +77,7 @@ public class QuestionActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v){
-                nameTV.setText("COVID Information");
+                startActivity(new Intent(QuestionActivity.this, InfoActivity.class));
             }
         });
 
