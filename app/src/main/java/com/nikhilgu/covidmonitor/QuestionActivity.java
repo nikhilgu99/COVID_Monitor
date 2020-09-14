@@ -14,7 +14,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class QuestionActivity extends AppCompatActivity {
 
@@ -27,6 +31,9 @@ public class QuestionActivity extends AppCompatActivity {
 
     GoogleSignInClient mGoogleSignInClient;
     GoogleSignInAccount account;
+
+    FirebaseDatabase rootNode;
+    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +59,8 @@ public class QuestionActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v){
-                startActivity(new Intent(QuestionActivity.this, SymptomActivity.class));
-                //finish();
+            startActivity(new Intent(QuestionActivity.this, SymptomActivity.class));
+            finish();
             }
         });
 
