@@ -32,9 +32,6 @@ public class QuestionActivity extends AppCompatActivity {
     GoogleSignInClient mGoogleSignInClient;
     GoogleSignInAccount account;
 
-    FirebaseDatabase rootNode;
-    DatabaseReference reference;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,8 +56,9 @@ public class QuestionActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v){
-            startActivity(new Intent(QuestionActivity.this, SymptomActivity.class));
-            finish();
+            Intent intent = new Intent(QuestionActivity.this, SymptomActivity.class);
+            intent.putExtra("ACCOUNT", account);
+            startActivity(intent);
             }
         });
 
@@ -76,7 +74,7 @@ public class QuestionActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v){
-                nameTV.setText("Admin Dashboard");
+                startActivity(new Intent(QuestionActivity.this, AdminActivity.class));
             }
         });
 

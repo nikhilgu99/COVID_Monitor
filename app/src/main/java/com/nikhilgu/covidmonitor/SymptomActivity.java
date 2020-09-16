@@ -8,6 +8,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Calendar;
+
 public class SymptomActivity extends AppCompatActivity {
 
     private TextView questionNum;
@@ -33,6 +39,12 @@ public class SymptomActivity extends AppCompatActivity {
         "Have you been in contact with someone tested COVID positive in the past 14 days?",
     };
 
+    GoogleSignInAccount account;
+    FirebaseDatabase rootNode;
+    DatabaseReference reference;
+
+    private Calendar c = Calendar.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,15 +63,21 @@ public class SymptomActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v){
-                if(questionCounter == questions.length){
-                    Toast.makeText(getApplicationContext(), "Finished Survey - Yes", Toast.LENGTH_SHORT).show();
-                }else {
-                    yesCounter++;
-                    questionCounter++;
+            reference.child(account.getId()).child("Q" + questionCounter).setValue("Yes");
 
-                    questionNum.setText("Q" + questionCounter);
-                    questionLbl.setText(questions[questionCounter - 1]);
-                }
+            if(questionCounter == questions.length){
+                int month = c.get(Calendar.MONTH) + 1;
+                int day = c.get(Calendar.DAY_OF_MONTH);
+                reference.child(account.getId()).child("Last Survey").setValue(month + "" + day);
+
+                Toast.makeText(getApplicationContext(), "Finished Survey - Yes", Toast.LENGTH_SHORT).show();
+            }else {
+                yesCounter++;
+                questionCounter++;
+
+                questionNum.setText("Q" + questionCounter);
+                questionLbl.setText(questions[questionCounter - 1]);
+            }
             }
         });
 
@@ -67,16 +85,31 @@ public class SymptomActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v){
-                if(questionCounter == questions.length){
-                    Toast.makeText(getApplicationContext(), "Finished Survey - No", Toast.LENGTH_SHORT).show();
-                }else {
-                    noCounter++;
-                    questionCounter++;
+            reference.child(account.getId()).child("Q" + questionCounter).setValue("No");
 
-                    questionNum.setText("Q" + questionCounter);
-                    questionLbl.setText(questions[questionCounter - 1]);
-                }
+            if(questionCounter == questions.length){
+                int month = c.get(Calendar.MONTH) + 1;
+                int day = c.get(Calendar.DAY_OF_MONTH);
+                reference.child(account.getId()).child("Last Survey").setValue(month + "" + day);
+
+                Toast.makeText(getApplicationContext(), "Finished Survey - No", Toast.LENGTH_SHORT).show();
+            }else {
+                noCounter++;
+                questionCounter++;
+
+                questionNum.setText("Q" + questionCounter);
+                questionLbl.setText(questions[questionCounter - 1]);
+            }
             }
         });
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        account = getIntent().getParcelableExtra("ACCOUNT");
+
+        rootNode = FirebaseDatabase.getInstance("https://covid-monitor-1599596988334.firebaseio.com/");
+        reference = rootNode.getReference("Users");
     }
 }

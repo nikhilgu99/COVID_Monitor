@@ -20,6 +20,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 1;
@@ -74,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
             rootNode = FirebaseDatabase.getInstance("https://covid-monitor-1599596988334.firebaseio.com/");
             reference = rootNode.getReference("Users");
             reference.child(account.getId()).child("Email").setValue(account.getEmail());
+            reference.child(account.getId()).child("Name").setValue(account.getDisplayName());
 
             Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
             intent.putExtra("ACCOUNT", account);
