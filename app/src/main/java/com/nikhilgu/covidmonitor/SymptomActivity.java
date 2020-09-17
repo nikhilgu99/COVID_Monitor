@@ -51,6 +51,7 @@ public class SymptomActivity extends AppCompatActivity {
         setContentView(R.layout.activity_symptom);
         this.getSupportActionBar().hide();
 
+        // Hooks
         questionNum = findViewById(R.id.questionNum);
         questionLbl = findViewById(R.id.symptom);
         yesBtn = findViewById(R.id.yes_button);
@@ -59,6 +60,7 @@ public class SymptomActivity extends AppCompatActivity {
         questionNum.setText("Q" + questionCounter);
         questionLbl.setText(questions[questionCounter - 1]);
 
+        // Button listeners below
         yesBtn.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -104,6 +106,7 @@ public class SymptomActivity extends AppCompatActivity {
         });
     }
 
+    // Get Google account info, setup firebase connection
     @Override
     public void onStart(){
         super.onStart();

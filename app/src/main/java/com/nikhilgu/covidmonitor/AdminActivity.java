@@ -20,13 +20,17 @@ public class AdminActivity extends AppCompatActivity {
 
     private TextView completedTV;
     private TextView notCompletedTV;
+    private TextView percentTV;
 
     FirebaseDatabase rootNode;
     DatabaseReference reference;
 
     private Calendar calendar = Calendar.getInstance();
+
     private int month;
     private int day;
+    private double numYesPeople = 0.0;
+    private double totalPeople = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +38,15 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
         this.getSupportActionBar().hide();
 
+        // Hooks
         completedTV = findViewById(R.id.completed);
         notCompletedTV = findViewById(R.id.notCompleted);
+        percentTV = findViewById(R.id.percent);
 
         month = calendar.get(Calendar.MONTH) + 1;
         day = calendar.get(Calendar.DAY_OF_MONTH);
 
+        // Setup firebase connection
         rootNode = FirebaseDatabase.getInstance("https://covid-monitor-1599596988334.firebaseio.com/");
         reference = rootNode.getReference("Users");
 
@@ -49,7 +56,7 @@ public class AdminActivity extends AppCompatActivity {
 
                 String successNames = "";
                 String notSuccessNames = "";
-
+                // Check who has/hasn't completed survey, and who has symptoms
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String name = snapshot.child("Name").getValue(String.class);
                     String date = snapshot.child("Last Survey").getValue(String.class);
@@ -59,6 +66,15 @@ public class AdminActivity extends AppCompatActivity {
                     }else{
                         notSuccessNames += name + ", ";
                     }
+
+                    for(int x = 1; x <= 12; x++){
+                        String answer = snapshot.child("Q" + x).getValue(String.class);
+                        if(answer.equalsIgnoreCase("Yes")){
+                            numYesPeople++;
+                            break;
+                        }
+                    }
+                    totalPeople++;
                 }
 
                 if(!successNames.equalsIgnoreCase("")){
@@ -71,6 +87,8 @@ public class AdminActivity extends AppCompatActivity {
                 }else{
                     notCompletedTV.setText("Not Completed Survey:");
                 }
+                String percentPeople = String.format("%.2f", (numYesPeople / totalPeople) * 100);
+                percentTV.setText("Percent with symptoms: " + percentPeople + "%");
             }
 
             @Override

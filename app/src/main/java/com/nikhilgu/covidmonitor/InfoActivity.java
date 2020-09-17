@@ -27,7 +27,7 @@ public class InfoActivity extends AppCompatActivity {
         this.getSupportActionBar().hide();
 
         testTV = findViewById(R.id.test);
-
+        // Get JSON response from API website
         StringRequest sr = new StringRequest(Request.Method.GET, STATS_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -43,7 +43,7 @@ public class InfoActivity extends AppCompatActivity {
         RequestQueue rq = Volley.newRequestQueue(InfoActivity.this);
         rq.add(sr);
     }
-
+    // Add COVID API data to the View
     private void handleResponse(String response){
         try{
             String data = "";
